@@ -68,7 +68,7 @@ function App() {
                     </div>
                     <div className="flex gap-4">
                       <Button onClick={handleLogout} variant="outline">Log out</Button>
-                      <Button asChild variant="outline">
+                      <Button asChild variant="outline" >
                         <Link to="/dashboard">Dashboard</Link>
                       </Button>
                     </div>
