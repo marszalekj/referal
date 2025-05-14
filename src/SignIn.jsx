@@ -1,18 +1,30 @@
 import { useState } from 'react';
+import { Button } from "@/components/ui/button";
+import { signin } from "./api";
 
 export default function SignIn({ onSignIn }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    // Ici tu pourrais faire un appel API
-    onSignIn && onSignIn({ email });
+    setError(null);
+    setLoading(true);
+    try {
+      const data = await signin(email, password);
+      onSignIn(data);
+    } catch (err) {
+      setError("Sign up failed: " + (err.message || "unknown error"));
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-xs mx-auto p-4 bg-white rounded shadow">
-      <h2 className="text-xl font-bold mb-2">Inscription</h2>
+      <h2 className="text-xl font-bold mb-2">Sign In</h2>
       <input
         type="email"
         placeholder="Email"
@@ -23,13 +35,16 @@ export default function SignIn({ onSignIn }) {
       />
       <input
         type="password"
-        placeholder="Mot de passe"
+        placeholder="Password"
         value={password}
         onChange={e => setPassword(e.target.value)}
         className="border rounded px-3 py-2"
         required
       />
-      <button type="submit" className="bg-green-500 hover:bg-green-600 text-white py-2 rounded">S'inscrire</button>
+      <Button type="submit" variant="outline" disabled={loading}>
+        {loading ? "Signing in..." : "Sign In"}
+      </Button>
+      {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
     </form>
   );
 }
