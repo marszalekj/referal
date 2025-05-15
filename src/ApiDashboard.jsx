@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { whoami, getKeys, createKey } from "./api";
 
 export default function ApiDashboard({ token }) {

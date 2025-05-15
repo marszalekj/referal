@@ -63,7 +63,7 @@ function App() {
                 user && token ? (
                   <div className="flex flex-col items-center gap-4">
                     <div className="flex flex-col items-center gap-2">
-                      <span className="font-semibold">Bienvenue,</span>
+                      <span className="font-semibold">Hello</span>
                       <span className="text-blue-600">{user.email}</span>
                     </div>
                     <div className="flex gap-4">
