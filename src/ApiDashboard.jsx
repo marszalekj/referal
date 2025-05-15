@@ -47,7 +47,10 @@ export default function ApiDashboard({ token }) {
       {loadingUser ? (
         <div>Loading user info...</div>
       ) : error ? (
-        <div className="text-red-500">{error.message}</div>
+        <Alert variant="destructive" className="mb-6">
+          <AlertTitle>Erreur</AlertTitle>
+          <AlertDescription>{error.message}</AlertDescription>
+        </Alert>
       ) : user ? (
         <div className="mb-6">
           <div className="font-semibold">Connected as: <span className="text-blue-600">{user.email}</span></div>
