@@ -67,8 +67,8 @@ function App() {
                       <span className="text-blue-600">{user.email}</span>
                     </div>
                     <div className="flex gap-4">
-                      <Button onClick={handleLogout} variant="outline">Log out</Button>
-                      <Button asChild variant="outline" >
+                      <Button onClick={handleLogout} variant="outline" className="cursor-pointer">Log out</Button>
+                      <Button asChild variant="outline" className="cursor-pointer">
                         <Link to="/dashboard">Dashboard</Link>
                       </Button>
                     </div>
@@ -84,15 +84,12 @@ function App() {
                 user && token ? (
                   <div>
                     <div className="flex gap-4 justify-end mb-4">
-                      <Button onClick={handleLogout} variant="outline">Log out</Button>
-                      <Button asChild variant="outline">
+                      <Button onClick={handleLogout} variant="outline" className="cursor-pointer">Log out</Button>
+                      <Button asChild variant="outline" className="cursor-pointer">
                         <Link to="/">Home</Link>
                       </Button>
                     </div>
-                    <div className="flex flex-col items-center gap-2 mb-4">
-                      <span className="font-semibold">Connected as :</span>
-                      <span className="text-blue-600">{user.email}</span>
-                    </div>
+
                     <ApiDashboard token={token} />
                   </div>
                 ) : (

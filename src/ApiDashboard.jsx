@@ -1,4 +1,13 @@
 import { useEffect, useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -42,45 +51,52 @@ export default function ApiDashboard({ token }) {
 
   if (!token) return null;
   return (
-    <div className="mt-8">
-      <h2 className="text-2xl font-bold mb-4">API Dashboard</h2>
-      {loadingUser ? (
-        <div>Loading user info...</div>
-      ) : error ? (
-        <Alert variant="destructive" className="mb-6">
-          <AlertTitle>Erreur</AlertTitle>
-          <AlertDescription>{error.message}</AlertDescription>
-        </Alert>
-      ) : user ? (
-        <div className="mb-6">
-          <div className="font-semibold">Connected as: <span className="text-blue-600">{user.email}</span></div>
-        </div>
-      ) : null}
+    <div className="flex  items-center justify-center bg-gray-50 p-4">
+      <Card className="w-full max-w-2xl">
+        <CardHeader>
+          <CardTitle className="text-center">API Dashboard</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {loadingUser ? (
+            <div className="text-center text-gray-500">Loading user info...</div>
+          ) : error ? (
+            <Alert variant="destructive" className="mb-6">
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>{error.message}</AlertDescription>
+            </Alert>
+          ) : user ? (
+            <div className="mb-6 text-center">
+              <span className="font-semibold">Connected as: </span>
+              <span className="text-blue-600">{user.email}</span>
+            </div>
+          ) : null}
 
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-2">
-          <span className="font-semibold">API Keys</span>
-          <Button variant="outline" onClick={handleCreateKey} disabled={creatingKey}>
-            {creatingKey ? "Creating..." : "Create new key"}
-          </Button>
-        </div>
-        {loadingKeys ? (
-          <div>Loading keys...</div>
-        ) : (
-          <ul className="space-y-2">
-            {Array.isArray(keys) && keys.length > 0 ? (
-              keys.map((k) => (
-                <li key={k.id} className="bg-gray-100 rounded px-4 py-2 flex flex-col md:flex-row md:items-center md:justify-between">
-                  <span className="font-mono break-all">{k.key}</span>
-                  <span className="text-xs text-gray-500 mt-1 md:mt-0">Team ID: {k.teamId}</span>
-                </li>
-              ))
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-2">
+              <span className="font-semibold">API Keys</span>
+              <Button variant="outline" onClick={handleCreateKey} disabled={creatingKey} className="cursor-pointer">
+                {creatingKey ? "Creating..." : "New key"}
+              </Button>
+            </div>
+            {loadingKeys ? (
+              <div className="text-center text-gray-500">Loading keys...</div>
             ) : (
-              <li className="text-gray-400">No API keys yet.</li>
+              <ul className="space-y-2">
+                {Array.isArray(keys) && keys.length > 0 ? (
+                  keys.map((k) => (
+                    <li key={k.id} className="bg-gray-100 rounded px-4 py-2 flex flex-col md:flex-row md:items-center md:justify-between">
+                      <span className="font-mono break-all">{k.key}</span>
+                      <span className="text-xs text-gray-500 mt-1 md:mt-0">Team ID: {k.teamId}</span>
+                    </li>
+                  ))
+                ) : (
+                  <li className="text-gray-400">No API keys yet.</li>
+                )}
+              </ul>
             )}
-          </ul>
-        )}
-      </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
