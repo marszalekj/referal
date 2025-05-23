@@ -52,7 +52,7 @@ export default function ApiDashboard({ token }) {
   if (!token) return null;
   return (
     <div className="flex  items-center justify-center bg-gray-50 p-4">
-      <Card className="w-full max-w-2xl">
+      <Card className="w-full max-w-2xl bg-white border border-black/10 shadow-none rounded-lg">
         <CardHeader>
           <CardTitle className="text-center">API Dashboard</CardTitle>
         </CardHeader>
@@ -74,7 +74,7 @@ export default function ApiDashboard({ token }) {
           <div className="mb-6">
             <div className="flex items-center justify-between mb-2">
               <span className="font-semibold">API Keys</span>
-              <Button variant="outline" onClick={handleCreateKey} disabled={creatingKey} className="cursor-pointer">
+              <Button onClick={handleCreateKey} disabled={creatingKey} className="cursor-pointer bg-black text-white border border-black hover:bg-gray-900 rounded-lg">
                 {creatingKey ? "Creating..." : "New key"}
               </Button>
             </div>

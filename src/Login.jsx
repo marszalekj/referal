@@ -36,7 +36,7 @@ export default function Login({ onLogin }) {
 
   return (
     <div className="flex items-center justify-center bg-gray-50 p-4">
-      <Card className="w-full max-w-sm">
+      <Card className="w-full max-w-sm bg-white border border-black/10 shadow-none rounded-lg">
         <CardHeader>
           <CardTitle className="text-center">Login</CardTitle>
         </CardHeader>
@@ -51,6 +51,7 @@ export default function Login({ onLogin }) {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
+                className="bg-white text-black border border-black placeholder-gray-500 focus:ring-black/30 rounded-lg"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -58,13 +59,14 @@ export default function Login({ onLogin }) {
               <Input
                 id="password"
                 type="password"
-                placeholder="Mot de passe"
+                placeholder="Password"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 required
+                className="bg-white text-black border border-black placeholder-gray-500 focus:ring-black/30 rounded-lg"
               />
             </div>
-            <Button type="submit" variant="default" className="w-full cursor-pointer" disabled={loading}>
+            <Button type="submit" className="w-full cursor-pointer bg-black text-white border border-black hover:bg-gray-900 rounded-lg" disabled={loading}>
               {loading ? "Logging in..." : "Log in"}
             </Button>
             {error && (
