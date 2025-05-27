@@ -61,18 +61,20 @@ function App() {
               path="/"
               element={
                 user && token ? (
-                  <div className="flex flex-col items-center gap-4">
-                    <div className="flex flex-col items-center gap-2">
-                      <span className="font-semibold">Hello</span>
-                      <span className="text-blue-600">{user.email}</span>
-                    </div>
-                    <div className="flex gap-4">
-                      <Button onClick={handleLogout} variant="outline" className="cursor-pointer">Log out</Button>
-                      <Button asChild variant="outline" className="cursor-pointer">
-                        <Link to="/dashboard">Dashboard</Link>
-                      </Button>
-                    </div>
-                  </div>
+                  <div className="flex flex-col min-h-[80vh] items-center justify-center bg-white px-4">
+  <div className="w-full max-w-md bg-white border border-black rounded-2xl shadow-[0_4px_24px_0_rgba(0,0,0,0.04)] px-8 py-10 flex flex-col items-center">
+    <div className="w-full flex flex-col items-center mb-8">
+      <span className="text-4xl font-extrabold tracking-tight font-sans text-black mb-2 text-center">Welcome</span>
+      <span className="text-gray-700 text-lg text-center">{user.email}</span>
+    </div>
+    <div className="flex flex-row flex-wrap gap-4 min-w-0 justify-center">
+  <Button onClick={handleLogout} className="bg-black text-white border border-black rounded-2xl px-6 py-3 font-semibold hover:bg-white hover:text-black transition-all duration-200">Log out</Button>
+  <Button asChild className="bg-black text-white border border-black rounded-2xl px-6 py-3 font-semibold hover:bg-white hover:text-black transition-all duration-200">
+    <Link to="/dashboard">Dashboard</Link>
+  </Button>
+</div>
+  </div>
+</div>
                 ) : (
                   <Navigate to="/login" replace />
                 )
