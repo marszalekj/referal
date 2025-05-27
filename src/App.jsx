@@ -58,7 +58,7 @@ function App() {
               }
             />
             <Route
-              path="/"
+              path="/home"
               element={
                 user && token ? (
                   <div className="flex flex-col min-h-[80vh] items-center justify-center bg-white px-4">
@@ -80,6 +80,7 @@ function App() {
                 )
               }
             />
+             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route
               path="/dashboard"
               element={
